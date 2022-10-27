@@ -50,24 +50,27 @@ function registrarProduto(){
         return;
     }
 
-    console.log(foto.value)
     if(foto.value==''){
         gerarToast('Campo Vazio','Selecione uma Imagem!')
         foto.focus()
         return;
     }
 
-    var img 
+    var imgB 
 
     var fReader = new FileReader();
         fReader.readAsDataURL(foto.files[0]);
         fReader.onloadend = function(event){
-        img = event.target.result;
+        imgB=event.target.result;
+        estoque.push(JSON.parse(`{"nome":"${nome.value}","estoque":${Number(estoqueL.value)},"preco":${Number(preco.value)},"categoria":${Number(categoria.value)},"imagem":"${imgB}"}`))
+        localStorage.setItem('estoque', JSON.stringify(estoque))
+        document.getElementById("formularioCadastro").reset()
+        
     }
+
     
-    estoque.push(JSON.parse(`{"nome":"${nome.value}","estoque":"${Number(estoqueL.value)}","preco":${Number(preco.value)},"categoria":${Number(preco.value)},"imagem":${img}}`))
-    localStorage.setItem('estoque', JSON.stringify(estoque))
-    document.getElementById("formulario").reset()
+    
+    
     
     
 }
