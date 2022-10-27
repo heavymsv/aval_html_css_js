@@ -77,7 +77,7 @@ function povoarTela(itens){
         <label class="visually-hidden" for="itemEstoque${valor}">Numero de Itens No carrinho</label>
         <div class="input-group">
         <div class="input-group-text"><img src="./imagens/carrinho.svg"></button></div>
-        <input type="text" class="form-control"  value="0" id="itemEstoque${valor}">
+        <input type="text" class="form-control"  value="0" id="itemEstoque${valor}" readonly>
         </div>
         </div>
         </div>
