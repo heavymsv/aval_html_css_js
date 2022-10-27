@@ -26,6 +26,7 @@ function povoarTabela(){
             document.getElementById('totalCarrinhoMostrar').innerHTML='R$ 00,00'
         }
         else{
+            sum = 0
             tabela = document.getElementById('corpoTabela')
             tabela.innerHTML = ""
             carrinho.forEach((element,valor) => {
@@ -45,11 +46,31 @@ function povoarTabela(){
             ${(element.preco*element.estoque).toLocaleString('pt-br',{style:'currency',currency:'BRL'})}
             </td>
             </tr>`
+
+            sum += element.preco*element.estoque
             }
             );
+            document.getElementById('totalCarrinhoMostrar').innerHTML=sum.toLocaleString('pt-br',{style:'currency',currency:'BRL'})
         }
     
     }
 }
 
-retDoCarrinho
+function retDoCarrinho(index){
+    console.log(index);
+}
+function zerarCompra(index){
+    estoque.every(element=>{
+        if(element.nome == carrinho[index].nome){
+            element.estoque += carrinho[index].estoque
+            console.log(element)
+            carrinho.splice(index,1) 
+            
+            localStorage.setItem("estoque",JSON.stringify(estoque))
+            localStorage.setItem("carrinho",JSON.stringify(carrinho))
+            povoarTabela()
+            return false;
+        }
+        return true;
+    })
+}
